@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block main %}
+
+    <div class="settings-header">
+        <h2>Personal information</h2>
+        <p>Leave blank the ones you'd like to remain unchanged, make sure to save changes once you're done.</p>
+    </div>
+    <div class="container settings-container">
+        <div class="form-box">
+            <form class="settings-form" action="/settings" method="post">
+                <div class="settings-step active">
+                    <label>First Name: {{ user[0]["firstname"] }}</label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><input autocomplete="off" id="firstname" name="firstname" type="text"></div>
+                </div>
+                <div class="settings-step active">
+                    <label>Last Name: {{ user[0]["lastname"] }}</label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><input autocomplete="off" id="lastname" name="lastname" type="text"></div>
+                </div>
+                <div class="settings-step active">
+                    <label>Age: {{ user[0]["age"] }}</label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><input autocomplete="off" id="age" name="age" type="number"></div>
+                </div>
+                <div class="settings-step active">
+                    <label>Sex: 
+                        {% if user[0]["sex"] == "m" %}
+                            Male
+                        {% else %}
+                            Female
+                        {% endif %}
+                    </label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><select name="sex" id="sex">
+                        <option selected disabled value="">Please select</option>
+                        <option value="f">Female</option>
+                        <option value="m">Male</option>
+                    </select></div>
+                </div>
+                <div class="settings-step active">
+                    <label>Weight: {{ user[0]["weight"] | int }}kg</label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><input autocomplete="off" id="weight" name="weight" placeholder="Kg" type="number" min="1"></div>
+                </div>
+                <div class="settings-step active">
+                    <label>Height: {{ user[0]["height"] }}cm</label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><input autocomplete="off" id="height" name="height" placeholder="Cm" type="number" min="1"></div>
+                </div>
+                <div class="settings-step active">
+                    <label>Activity level:
+                        {% if user[0]["activity"] == 1.2 %}
+                            Sedentary
+                        {% elif user[0]["activity"] == 1.375 %}
+                            Lightly Active
+                        {% elif user[0]["activity"]  == 1.55 %}
+                            Moderately Active
+                        {% elif user[0]["activity"] == 1.725 %}
+                            Very Active
+                        {% else %}
+                            Extremely Active
+                        {% endif %}
+                    </label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><select name="activity" id="activity">
+                        <option selected disabled value="">Please select</option>
+                        <option value="1.2">Sedentary</option>
+                        <option value="1.375">Lightly Active</option>
+                        <option value="1.55">Moderately Active</option>
+                        <option value="1.725">Very Active</option>
+                        <option value="1.9">Extremely Active</option>
+                    </select></div>
+                </div>
+                <div class="settings-step active">
+                    <label>My objective is:
+                        {% if user[0]["objective"] == 1 %}
+                            To lose weight (Cut)
+                        {% elif user[0]["objective"] == 2 %}
+                            To mantain my current weight
+                        {% else %}
+                            To increase my weight (Bulk)
+                        {% endif %}
+                    </label>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <div class="settings-input"><select name="objective" id="objective">
+                        <option selected disabled value="">Please select</option>
+                        <option value="1">To lose weight (Cut)</option>
+                        <option value="2">To mantain my current weight</option>
+                        <option value="3">To increase my weight (Bulk)</option>
+                    </select></div>
+                    <div>
+                        <label>Body fat %:
+                            {% if user[0]["bodyfat_percentage"] != 0 %}
+                                {{ user[0]["bodyfat_percentage"] }}
+                            {% else %}
+                                Not provided
+                            {% endif %}
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </label>
+                        <input autocomplete="off" id="bodyfat_percentage" name="bodyfat_percentage" placeholder="e.g. 20" type="number">
+                    </div>
+                </div>
+                <button type="submit" class="action-btn" style="font-size: 18px;">Save changes</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Landing
+{% endblock %}
+
+{% block main %}
+    <div class="landing-main">
+        <h1>Start moving towards your goals.<br>One meal at a time.</h1>
+        <p>Make sure you meet your daily caloric intake and macro goals with ZEN.</p>
+        {% if session["user_id"] %}
+        <a href="/diary" class="action-btn">Get Started</a>
+        {% else %}
+        <a href="/sign-up" class="action-btn">Get Started</a>
+        {% endif %}
+    </div>
+{% endblock %}

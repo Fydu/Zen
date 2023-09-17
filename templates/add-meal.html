@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Meal
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="form-box">
+            <form action="/add-meal" method="post">
+                <div class="add-meal-form active">
+                    <h2>Add meal</h2>
+                    <p>You can edit and delete your meals in the Diary later.</p>
+                    <div>
+                        <label>Meal Name</label>
+                        <input autocomplete="off" id="meal_name" name="meal_name" placeholder="e.g. Breakfast" type="text">
+                    </div>
+                    <div>
+                        <label>Food</label>
+                        <div class="new-food-container">
+                        <select name="food_id" id="food_id" required>
+                            <option selected disabled value="">Please select</option>
+                            {% for item in food_data %}
+                            <option style="text-transform:capitalize;" value="{{ item['food_id'] }}">{{ item["food_name"] }}, {{ item["food_uom"] }} - {{ item["food_calories"] }} Cal, {{ item["food_protein"] }}g P, {{ item["food_carbs"] }}g C, {{ item["food_fats"] }}g F</option>
+                            {% endfor %}
+                        </select>
+                        <a class="action-btn" href="/add-food" style="font-size: 18px;"><i class="fa-solid fa-circle-plus"></i></a></div>
+                    </div>
+                    <div>
+                        <label>Amount</label>
+                        <input autocomplete="off" id="amount" name="amount" placeholder="e.g. 1, 100, 0.5" type="number" step="0.1" min=0>
+                    </div>
+                    <div>
+                        <label>Date</label>
+                        <input type="date" name="meal_date" id="meal_date">
+                    </div>
+                    <button class="action-btn" type="submit" style="font-size: 18px;">Add meal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Diary
+{% endblock %}
+
+{% block main %}
+    <div class="diary-header">
+        <div class="menu-box">
+            <div class="menu">
+                <form action="/diary" method="post">
+                    <label>Choose a date:</label>
+                    <input id="date" name="date" type="date">
+                    <button id="goDate" type="submit"><i class="fa-solid fa-circle-chevron-right"></i></button>
+                </form>
+            </div>
+            <button class="bi-plus-lg menu-viewer"><i class="fa-solid fa-calendar-days"></i></button>
+        </div>
+        <div class="diary-addmeal">
+            <a href="/add-meal" class="action-btn"><i class="fa-solid fa-plus"></i> Add</a>
+        </div>
+    </div>
+
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Meal</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Calories</th>
+                <th>Protein</th>
+                <th>Carbs</th>
+                <th>Fats</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for meal in user_diary %}
+                <tr class="table-row">
+                    <td>{{ meal["meal_name"] }}</td>
+                    <td>{{ meal["food_name"] }}</td>
+                    <td>{{ meal["amount"] }}{{ meal["food_uom"] }}</td>
+                    {% if meal["food_uom"] == 'u' %}
+                        <td>{{ (meal["food_calories"] * meal["amount"]) | int }}</td>
+                        <td>{{ (meal["food_protein"] * meal["amount"]) | round(2) }}g</td>
+                        <td>{{ (meal["food_carbs"] * meal["amount"]) | round(2) }}g</td>
+                        <td>{{ (meal["food_fats"] * meal["amount"]) | round(2) }}g</td>
+                    {% else %}
+                        <td>{{ (meal["food_calories"] / 100 * meal["amount"]) | int }}</td>
+                        <td>{{ (meal["food_protein"] / 100 * meal["amount"]) | round(2) }}g</td>
+                        <td>{{ (meal["food_carbs"] / 100 * meal["amount"]) | round(2) }}g</td>
+                        <td>{{ (meal["food_fats"] / 100 * meal["amount"]) | round(2) }}g</td>
+                    {% endif %}
+                    <td>
+                        <form action="/delete" method="post">
+                            <input type="hidden" name="meal_id" id="meal_id" value="{{ meal['meal_id'] }}">
+                            <button id="deleteMeal" type="submit">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{ total_cal }}</td>
+                <td>{{ total_protein }}</td>
+                <td>{{ total_carbs }}</td>
+                <td>{{ total_fats }}</td>
+                <td>-</td>
+            </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}

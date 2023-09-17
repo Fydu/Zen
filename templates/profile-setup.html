@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile Setup
+{% endblock %}
+
+{% block main %}
+<div id="page" class="site">
+    <div class="container">
+        <div class="form-box">
+            <div class="progress">
+                <div class="logo"><span>ZEN</span></div>
+                <ul class="progress-steps">
+                    <li class="step-done">
+                        <span id="stepDone">1</span>
+                        <p>Create an Account</p>
+                    </li>
+                    <li class="step active">
+                        <span>2</span>
+                        <p>Personal Information</p>
+                    </li>
+                    <li class="step">
+                        <span>3</span>
+                        <p>Weight, Height & Sex</p>
+                    </li>
+                    <li class="step">
+                        <span>4</span>
+                        <p>Activity & Goals</p>
+                    </li>
+                </ul>
+            </div>
+            <form action="/profile-setup" method="post">
+                <div class="form-one form-step active">
+                    <h2>Personal information</h2>
+                    <p>Don't worry, you will be able to change these settings whenever you like.</p>
+                    <div>
+                        <label>First Name</label>
+                        <input autocomplete="off" id="firstname" name="firstname" placeholder="e.g. John" type="text" required>
+                    </div>
+                    <div>
+                        <label>Last Name</label>
+                        <input autocomplete="off" id="lastname" name="lastname" placeholder="e.g. Smith" type="text" required>
+                    </div>
+                    <div>
+                        <label>Age</label>
+                        <input autocomplete="off" id="age" name="age" placeholder="e.g. 30" type="number" min="1" required>
+                    </div>
+                </div>
+                <div class="form-two form-step">
+                    <h2>Personal information</h2>
+                    <div>
+                        <label id="tooltip">Sex
+                            <span id="tooltipText">In ZEN, we support gender fluidity. If your gender identity is not the same as your sex assigned at birth,<br> and you have not started gender-affirming medications, please select your sex assigned at birth<br> because it will most accurately reflect your metabolic rate.</span>
+                            <i class="fa-solid fa-circle-info"></i></label>
+                        <select required name="sex" id="sex">
+                            <option selected disabled value="">Please select</option>
+                            <option value="f">Female</option>
+                            <option value="m">Male</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Weight</label>
+                        <input autocomplete="off" id="weight" name="weight" placeholder="Kg" type="number" min="1" required>
+                    </div>
+                    <div>
+                        <label>Height</label>
+                        <input autocomplete="off" id="height" name="height" placeholder="Cm" type="number" min="1" required>
+                    </div>
+                </div>
+                <div class="form-three form-step">
+                    <h2>Activity & Goals</h2>
+                    <div>
+                        <label>Activity level</label>
+                        <select name="activity" id="activity" required>
+                            <option selected disabled value="">Please select</option>
+                            <option value="1.2">Sedentary</option>
+                            <option value="1.375">Lightly Active</option>
+                            <option value="1.55">Moderately Active</option>
+                            <option value="1.725">Very Active</option>
+                            <option value="1.9">Extremely Active</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>My objective is</label>
+                        <select name="objective" id="objective" required>
+                            <option selected disabled value="">Please select</option>
+                            <option value="1">To lose weight (Cut)</option>
+                            <option value="2">To mantain my current weight</option>
+                            <option value="3">To increase my weight (Bulk)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Body fat % (optional)</label>
+                        <input autocomplete="off" id="bodyfat_percentage" name="bodyfat_percentage" placeholder="e.g. 20" type="number">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn-prev" disabled>Back</button>
+                    <button type="button" class="btn-next">Next step</button>
+                    <button type="submit" class="btn-submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

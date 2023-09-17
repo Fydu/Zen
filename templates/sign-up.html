@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sign up
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="form-box">
+            <form action="/sign-up" method="post">
+                <div class="signup-form active">
+                    <h2>Create an account</h2>
+                    <p>Enter a unique username and a password that contains at least 8 characters</p>
+                    <div>
+                        <label>Username</label>
+                        <input autocomplete="off" autofocus id="username" name="username" placeholder="e.g. JohnSmith123" type="text" required>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input id="password" name="password" type="password" required minlength="8">
+                    </div>
+                    <div>
+                        <label>Confirm Your Password</label>
+                        <input id="confirmation" name="confirmation" type="password" required minlength="8">
+                    </div>
+                    <button class="action-btn" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Meal
+{% endblock %}
+
+{% block main %}
+    <div class="add-food-container">
+        <div class="form-box">
+            <form action="/add-food" method="post">
+                <div class="add-meal-form active">
+                    <h2>New Food Item</h2>
+                    <p>The item will be saved for future uses.</p>
+                    <div>
+                        <label>Food Name</label>
+                        <input autocomplete="off" id="food_name" name="food_name" placeholder="e.g. Banana" type="text" required>
+                    </div>
+                    <div>
+                        <label>Unit of Measurement</label>
+                        <select name="food_uom" id="food_uom" required>
+                            <option selected disabled value="">Please select</option>
+                            <option value="u">Units</option>
+                            <option value="g">Grams</option>
+                            <option value="ml">Milliliters</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Calories</label>
+                        <p>Per 100g / 100ml / 1 unit.</p>
+                        <input required autocomplete="off" id="food_calories" name="food_calories" placeholder="e.g. 105" type="number" min=0>
+                    </div>
+                    <div>
+                        <label>Grams of Protein</label>
+                        <p>Per 100g / 100ml / 1 unit.</p>
+                        <input required autocomplete="off" id="food_protein" name="food_protein" placeholder="e.g. 1.29" type="number" step="0.01" min=0>
+                    </div>
+                    <div>
+                        <label>Grams of Carbohydrates</label>
+                        <p>Per 100g / 100ml / 1 unit.</p>
+                        <input required autocomplete="off" id="food_carbs" name="food_carbs" placeholder="e.g. 26.95" type="number" step="0.01" min=0>
+                    </div>
+                    <div>
+                        <label>Grams of Fat</label>
+                        <p>Per 100g / 100ml / 1 unit.</p>
+                        <input required autocomplete="off" id="food_fats" name="food_fats" placeholder="e.g. 0.39" type="number" step="0.01" min=0>
+                    </div>
+                    <button class="action-btn" type="submit" style="font-size: 18px;">Add food</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

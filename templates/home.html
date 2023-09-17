@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+        <div class="home-main">
+            <div class="dashboard">
+                <div class="box">
+                    <div class="chart" data-percent="{{ current_percentage }}" data-scale-color="#6c5ce7">{{ current_percentage }}%</div>
+                    <h2>DAILY CALORIES</h2>
+                </div>
+                <div class="box">
+                    <div class="current-goals">
+                        <div class="home-current-data">
+                            <h2>TOTAL CONSUMED</h2>
+                            <h3>{{ current_calories }} Calories</h3>
+                            <p>{{ current_protein }}g Protein</p>
+                            <p>{{ current_carbs }}g Carbohydrates</p>
+                            <p>{{ current_fats }}g Fats</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="home-objective-data">
+                        <h2>TOTAL DAILY GOALS</h2>
+                        <h3>{{ tdee }} Calories</h3>
+                        <p>{{ protein_goal }}g Protein</p>
+                        <p>{{ carbs_goal}}g Carbohydrates</p>
+                        <p>{{ fats_goal }}g Fats</p>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <a href="/diary" class="btn-prev diary-btn"><i class="fa-solid fa-book-open"></i>Go to Diary</a>
+                <a href="/settings" class="btn-prev settings-btn"><i class="fa-solid fa-gear"></i>Settings</a>
+                <a href="/about" class="btn-prev about-btn"><i class="fa-solid fa-circle-info"></i>About ZEN</a>
+            </div>
+        </div>
+{% endblock %}
